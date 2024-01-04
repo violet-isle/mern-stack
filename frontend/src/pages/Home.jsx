@@ -3,10 +3,10 @@ import axios from 'axios';
 import Spinner from '../components/Spinner';
 import PartnersCard from '../components/home/PartnersCard';
 import PartnersTable from '../components/home/PartnersTable';
+import Search from '../components/Search'
 import { Link } from 'react-router-dom';
-import { AiOutlineEdit } from 'react-icons/ai';
-import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+
 
 const Home = () => {
   const [partners, setPartners] = useState([]);
@@ -60,16 +60,6 @@ const Home = () => {
 
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Partners List</h1>
-        {/*<Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Dropdown Button
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setSortedField('name')}>Action</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSortedField('skill')}>Another action</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSortedField('partnerYear')}>Something else</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>*/}
          
         <table>
           <thead>
@@ -97,6 +87,7 @@ const Home = () => {
         </Link>
 
       </div>
+      <Search/>
       {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
     </div>
   )

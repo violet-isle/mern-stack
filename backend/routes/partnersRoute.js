@@ -4,11 +4,15 @@ import { Partner } from "../models/partnerModel.js";
 const router = express.Router()
 
 //Route for getting all partner data
+
 router.get('/', async (request, response) => {
     try {
-        const partners = await Partner.find({});
-
-
+        const {key, page, limit} = request.query
+        
+        var partners = await Partner.find({});
+        if (key != null){
+            partners = await Partner.find({name: {$regex:key, $options: 'i'}});
+        }
         return response.status(200).json({
             count: partners.length,
             data: partners,
@@ -18,6 +22,7 @@ router.get('/', async (request, response) => {
         response.status(500).send({ message: error.message });
     }
 });
+
 
 //Route for getting a partner's data by id
 router.get('/:id', async (request, response) => {
