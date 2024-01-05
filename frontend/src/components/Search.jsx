@@ -1,19 +1,36 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import PartnersCard from '../components/home/PartnersCard';
+import PartnersTable from '../components/home/PartnersTable';
+import Spinner from '../components/Spinner';
 
-const Search = () => {
+const Search = ({showType, loading}) => {
   const [searchResult, setSearchResult] = useState([]);
   const [key, setKey] = useState("");
+  const [sortedField, setSortedField] = React.useState(null);
+  let sortedPartners = [...searchResult];
+  if (sortedField !== null) {
+    sortedPartners.sort((a, b) => {
+      if (a[sortedField] < b[sortedField]) {
+        return -1;
+      }
+      if (a[sortedField] > b[sortedField]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
   useEffect(()=>{
     const search = async () => {
       try{
         if(!key.trim()){
-          setSearchResult([]);
+          const res = await axios.get('http://localhost:5555/community-partners');
+          setSearchResult(res.data.data);
           return;
         };
         const res = await axios.get('http://localhost:5555/community-partners', {params: {key: key}});
-        console.log(res.data.data);
         setSearchResult(res.data.data);
       } catch (error) {
         console.log(error)
@@ -21,7 +38,7 @@ const Search = () => {
     }
     search();
   }, [key]);
-  return (  
+  return (
   <form>
     <div>
       <button><BsSearch/></button>
@@ -33,20 +50,45 @@ const Search = () => {
           onChange={(e) => setKey(e.target.value)}
         />
       </div>
-      {searchResult && searchResult.length >0 && (
+      <table>
+          <thead>
+            <tr>
+              <th>
+                <button type="button" onClick={() => setSortedField('name')}>
+                  Name
+                </button>
+              </th>
+              <th>
+                <button type="button" onClick={() => setSortedField('skill')}>
+                  Skill
+                </button>
+              </th>
+              <th>
+                <button type="button" onClick={() => setSortedField('partnerYear')}>
+                  Partnership Year
+                </button>
+              </th>
+            </tr>
+          </thead>
+        </table>
         <div>
-          {searchResult.map(partner => (
+          {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
+    
+          {/***searchResult.map((partner, index) => (
           <div key={partner._id}>
             <div>
-              <p>{partner.name}</p>
+              <Link to={`/community-partners/details/${partner._id}`}>
+                <p>{partner.name}</p>
+              </Link>
             </div>
           </div>
           
-          ))}
+          ))***/}
         </div>
-      )}
+      
     </div>    
   </form>
+  
   )
 }
 

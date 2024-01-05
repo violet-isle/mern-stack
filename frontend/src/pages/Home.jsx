@@ -61,34 +61,13 @@ const Home = () => {
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Partners List</h1>
          
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <button type="button" onClick={() => setSortedField('name')}>
-                  Name
-                </button>
-              </th>
-              <th>
-                <button type="button" onClick={() => setSortedField('skill')}>
-                  Skill
-                </button>
-              </th>
-              <th>
-                <button type="button" onClick={() => setSortedField('partnerYear')}>
-                  Partnership Year
-                </button>
-              </th>
-            </tr>
-          </thead>
-        </table>
+        
         <Link to='/community-partners/create'>
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>
 
       </div>
-      <Search/>
-      {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
+      <Search showType={showType} loading={loading}/>
     </div>
   )
 }
