@@ -41,36 +41,48 @@ const Search = ({showType, loading}) => {
   return (
   <form>
     <div>
-      <button><BsSearch/></button>
-      <div>
+      <div className='flex justify-between items-center'>
+        <div>
+        <BsSearch className='m-4 inline-block'/>
         <input
+          className='m-1'
           type="text"
           placeholder='Searching...'
           value = {key}
           onChange={(e) => setKey(e.target.value)}
         />
       </div>
-      <table>
+      <div>{/***
+      <select onChange={console.log(this)}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>***/}
+      </div>
+      <div>
+      <table className='inline-block'>
           <thead>
             <tr>
               <th>
-                <button type="button" onClick={() => setSortedField('name')}>
+                <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg" type="button" onClick={() => setSortedField('name')}>
                   Name
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => setSortedField('skill')}>
+                <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg" type="button" onClick={() => setSortedField('skill')}>
                   Skill
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => setSortedField('partnerYear')}>
+                <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg" type="button" onClick={() => setSortedField('partnerYear')}>
                   Partnership Year
                 </button>
               </th>
             </tr>
           </thead>
         </table>
+        </div>
+        </div>
         <div>
           {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
     
