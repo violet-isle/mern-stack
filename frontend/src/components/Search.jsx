@@ -86,7 +86,7 @@ const Search = ({showType, loading}) => {
         <div>
           {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
     
-          {/***searchResult.map((partner, index) => (
+        {/***searchResult.map((partner, index) => (
           <div key={partner._id}>
             <div>
               <Link to={`/community-partners/details/${partner._id}`}>

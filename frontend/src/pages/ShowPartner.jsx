@@ -6,7 +6,7 @@ import Spinner from '../components/Spinner';
 
 
 const ShowPartner = () => {
-  const [partner, setPartner] = useState({});
+  const [partner, setPartner] = useState({contact:{}});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
@@ -48,6 +48,19 @@ const ShowPartner = () => {
             <span className='text-xl mr-4 text-gray-500'>Partnership Year</span>
             <span>{partner.partnerYear}</span>
           </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Contact Name</span>
+            <span>{partner.contact.name}</span>
+          </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Contact Email</span>
+            <span>{partner.contact.email}</span>
+          </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Contact Phone Number</span>
+            <span>{partner.contact.phone}</span>
+          </div>
+          
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create Time</span>
             <span>{new Date(partner.createdAt).toString()}</span>

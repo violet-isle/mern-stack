@@ -10,6 +10,7 @@ const PartnersTable = ({ partners }) => {
             <tr>
               <th className='border boder-slate-600 rounded-md'>No.</th>
               <th className='border boder-slate-600 rounded-md'>Name</th>
+              <th className='border boder-slate-600 rounded-md'>Contact</th>
               <th className='border boder-slate-600 rounded-md max-md:hidden'>Skill / Category</th>
               <th className='border boder-slate-600 rounded-md max-md:hidden'>Partnership Year</th>
               <th className='border boder-slate-600 rounded-md'>Operations</th>
@@ -23,6 +24,9 @@ const PartnersTable = ({ partners }) => {
                 </td>
                 <td className='border border-slate-700 rounded-md text-center'>
                   {partner.name}
+                </td>
+                <td className='border border-slate-700 rounded-md text-center'>
+                  {partner.contact != null ? partner.contact.name : '0'}
                 </td>
                 <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
                   {partner.skill}

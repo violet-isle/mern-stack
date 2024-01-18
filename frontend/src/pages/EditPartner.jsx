@@ -9,6 +9,8 @@ const EditPartner = () => {
   const [name, setName] = useState('');
   const [skill, setSkill] = useState('');
   const [partnerYear, setPartnerYear] = useState('');
+  const [contact, setContact] = useState({name:"",email:"",phone:""});
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); 
   const {id} = useParams();
@@ -20,6 +22,7 @@ const EditPartner = () => {
         setName(response.data.partner.name);
         setSkill(response.data.partner.skill);
         setPartnerYear(response.data.partner.partnerYear);
+        response.data.partner.contact != null ? setContact(response.data.partner.contact) : contact;
         setLoading(false);
       })
       .catch((error) => {
@@ -36,6 +39,7 @@ const EditPartner = () => {
       name,
       skill,
       partnerYear,
+      contact,
     };
     setLoading(true);
     axios
@@ -89,6 +93,40 @@ const EditPartner = () => {
             type="text"
             value={partnerYear}
             onChange={(e) => setPartnerYear(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
+          />
+        </div>
+      </div>
+      
+      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Contact Name</label>
+          <input 
+            type="text"
+            value={contact.name}
+            onChange={(e) => setContact({name: e.target.value, email: contact.email, phone: contact.phone})}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
+          />
+        </div>
+      </div>
+      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Contact Email</label>
+          <input 
+            type="text"
+            value={contact.email}
+            onChange={(e) => setContact({name: contact.name, email: e.target.value, phone: contact.phone})}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
+          />
+        </div>
+      </div>
+      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Contact Phone Number</label>
+          <input 
+            type="text"
+            value={contact.phone}
+            onChange={(e) => setContact({name: contact.name, email: contact.email, phone: e.target.value})}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>

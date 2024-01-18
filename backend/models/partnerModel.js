@@ -1,5 +1,27 @@
 import mongoose from "mongoose";
 
+
+const contactSchema = mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+        },
+        phone: {
+            type: String,
+        }
+    },
+    {
+    timestamps: true,
+    }
+);
+
+const contactModel = mongoose.model("Contact", contactSchema)
+
+
 const partnerSchema = mongoose.Schema(
     {
         name: {
@@ -13,6 +35,9 @@ const partnerSchema = mongoose.Schema(
         partnerYear: {
             type: Number,
             required: true,
+        },
+        contact: {
+            type: Object,
         }
     },
     {

@@ -72,6 +72,7 @@ router.post('/', async (request, response) => {
             name: request.body.name,
             skill: request.body.skill,
             partnerYear: request.body.partnerYear,
+            contact: request.body.contact,
         };  
 
         const partner = await Partner.create(newPartner);
