@@ -23,15 +23,12 @@
 <br />
 <div align="center">
   <a href="https://github.com/violet-isle/mern-stack">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Simple Partner Base</h3>
 
   <p align="center">
     A simple partner database using the MERN stack of softwares to provide basic database searching, editing, creating, and deleting!
-    <br />
-    <a href="https://github.com/violet-isle/mern-stack"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/violet-isle/mern-stack">View Demo</a>
@@ -188,7 +185,11 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 Violet Strozykowski - violet@stroz.net
+<br />
 Austin Jacobs - ajacobsbusiness77@gmail.com
+<br />
+
+
 Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/violet-isle/mern-stack)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
