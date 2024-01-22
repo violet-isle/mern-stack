@@ -83,7 +83,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Screenshot 2024-01-08 122805-1](https://github.com/violet-isle/mern-stack/assets/114704338/db2d02c6-3522-49dd-ad39-70e89af13138)
+
 
 A simple partner database using the MERN stack of softwares to provide basic database searching, editing, creating, and deleting! This project uses a mix of softwares that make editing and styling the user interface and the backend easy and intuitive! 
 
@@ -108,21 +109,22 @@ A simple partner database using the MERN stack of softwares to provide basic dat
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+You need these programs to run and install the software:
+* npm 
   ```sh
   npm install npm@latest -g
   ```
+* mongodb
+    you can locally host a MongoDB instance at their website provided in the "Built With" section above, or use a free cloud provider such as Atlas 
 
 ### Installation
 
 
-1. Clone the repo
+1. Clone the repo (or download the .zip)
    ```sh
    git clone https://github.com/violet-isle/mern-stack.git
    ```
@@ -138,9 +140,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+This project can be used in many ways, and although it was designed for storing community partners of our local career center, it can be used for other institutions storing partners, or any other database application with minor tweaks to the code!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,12 +149,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add, create, or edit the stored partners
-- [ ] Search through all partners by name
-- [ ] Change the view
-    - [ ] Table view provides a simple list of partners and their attributes
-    - [ ] Card view provides a dynamic box-styled list
-- [ ] Sort the list by date at which the partner established the partnership, the name of the partner, or the skill area partnered with!
+- [ ] Add authentication
+- [ ] Dockerize
+- [ ] Add mongod setup
 
 See the [open issues](https://github.com/violet-isle/mern-stack/issues) for a full list of proposed features (and known issues).
 
