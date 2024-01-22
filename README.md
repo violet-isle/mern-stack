@@ -1,12 +1,5 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 
 
@@ -22,7 +15,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -72,7 +64,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -109,18 +100,18 @@ A simple partner database using the MERN stack of softwares to provide basic dat
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To get a local copy up and running follow these simple steps:
 
 ### Prerequisites
 
 You need these programs to run and install the software:
-* npm 
+* npm, update using:
   ```sh
   npm install npm@latest -g
   ```
-* mongodb
-    you can locally host a MongoDB instance at their website provided in the "Built With" section above, or use a free cloud provider such as Atlas 
-
+  or download from [their website](https://nodejs.org/en/download/current)
+* MongoDB: To run a server locally, download [MongoDB Community Edition](https://www.mongodb.com/try/download/community), otherwise, if you are using a cloud hosting service such as Atlas, simply replace the URL in the config.js
+  
 ### Installation
 
 
@@ -128,10 +119,25 @@ You need these programs to run and install the software:
    ```sh
    git clone https://github.com/violet-isle/mern-stack.git
    ```
-2. Install NPM packages
+2. Initialize Node.js packages
    ```sh
-   npm install @tailwindcss/forms axios notistack react react-dom react-icons react-router-dom cors express mongoose nodemon react-bootstrap
+   cd /frontend
+   npm init -yes
+   cd ..
+   cd /backend
+   npm init -yes
    ```
+3. Finally, to run, simply open two command windows and in one:
+   ```sh
+   cd frontend
+   npm run dev
+   ```
+And in the other: 
+   ```sh
+   cd backend
+   npm run dev
+   ```
+And then it should be running! Don't forget to add an initial community partner into the database before you expect to see data in the table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,7 +157,6 @@ This project can be used in many ways, and although it was designed for storing 
 
 - [ ] Add authentication
 - [ ] Dockerize
-- [ ] Add mongod setup
 
 See the [open issues](https://github.com/violet-isle/mern-stack/issues) for a full list of proposed features (and known issues).
 
@@ -177,20 +182,13 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - violet@stroz.net.com
-
+Violet Strozykowski - violet@stroz.net
+Austin Jacobs - ajacobsbusiness77@gmail.com
 Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/violet-isle/mern-stack)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -200,9 +198,8 @@ Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/vio
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Mohammad Taheri's video series on the MERN stacks](https://youtube.com/playlist?list=PLUX0Gmrifrwd7LmPYApia9NNwxV9-4Kgn&si=sn9lzNNTQgrtQTf1)
+* [NHN TV's video series on implementing live search functionality into REACT](https://www.youtube.com/watch?v=OwqkFjXG_sI)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
