@@ -3,15 +3,14 @@ import { Partner } from "../models/partnerModel.js";
 
 const router = express.Router()
 
-//Route for getting all partner data
-
+// Route that the frontend uses to draw data that responds to the search query or all database data
 router.get('/', async (request, response) => {
     try {
-        const {key, page, limit} = request.query
-        
+        const { key, page, limit } = request.query
+
         var partners = await Partner.find({});
-        if (key != null){
-            partners = await Partner.find({name: {$regex:key, $options: 'i'}});
+        if (key != null) {
+            partners = await Partner.find({ name: { $regex: key, $options: 'i' } });
         }
         return response.status(200).json({
             count: partners.length,
@@ -24,24 +23,25 @@ router.get('/', async (request, response) => {
 });
 
 
-//Route for getting a partner's data by id
+// Route that the frontend uses to draw data about a specific community partner
 router.get('/:id', async (request, response) => {
     try {
         const { id } = request.params;
         const partner = await Partner.findById(id);
 
-        return response.status(200).json({partner});
+        return response.status(200).json({ partner });
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
 });
 
-//Route for updating a partner
+
+// Route that the frontend draws data from and then edits and pushes data back to, when updating community partner info
 router.put('/:id', async (request, response) => {
     try {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
-            return response.status(400).send({message: "Send all required fields!"});
+            return response.status(400).send({ message: "Send all required fields!" });
         }
         const { id } = request.params;
         const result = await Partner.findByIdAndUpdate(id, request.body);
@@ -49,7 +49,7 @@ router.put('/:id', async (request, response) => {
         if (!result) {
             return response.status(404).json({ message: 'Partner not found' });
         }
-        
+
         return response.status(200).send({ message: 'Partner data updated succesfully' });
 
 
@@ -60,7 +60,7 @@ router.put('/:id', async (request, response) => {
 });
 
 
-//Route for Save a new Partner
+//Route the frontend uses to upload new partner data to the database
 router.post('/', async (request, response) => {
     try {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
@@ -73,19 +73,19 @@ router.post('/', async (request, response) => {
             skill: request.body.skill,
             partnerYear: request.body.partnerYear,
             contact: request.body.contact,
-        };  
+        };
 
         const partner = await Partner.create(newPartner);
 
         return response.status(201).send(partner);
-    } catch(error) {
+    } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
 });
 
 
-//Route for delete a Partner
+//Route for frontend to send data to, to delete a partner from a database
 router.delete('/:id', async (request, response) => {
     try {
         const { id } = request.params;
@@ -93,7 +93,7 @@ router.delete('/:id', async (request, response) => {
         if (!result) {
             return response.status(404).json({ message: 'Partner not found' });
         }
-        
+
         return response.status(200).send({ message: 'Partner data deleted succesfully' });
     } catch (error) {
         console.log(error.message);

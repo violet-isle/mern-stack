@@ -7,11 +7,12 @@ import { BsBookshelf, BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import PartnerSingleCard from './PartnerSingleCard';
 
+//this is the card format of the data as an alternative to the linear, table based view
 const PartnersCard = ({ partners }) => {
     return (
         <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             {partners.map((item) =>
-                <PartnerSingleCard key={item._id} partner = {item} />
+                <PartnerSingleCard key={item._id} partner={item} />
             )}
         </div>
     )

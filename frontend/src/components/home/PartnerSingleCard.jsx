@@ -6,6 +6,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 
+//a single card that gets called with each parter when cards are the view selected 
 const PartnerSingleCard = ({ partner }) => {
     return (
         <div
@@ -22,7 +23,7 @@ const PartnerSingleCard = ({ partner }) => {
             </div>
             <div className='flex justify-start partners-center gap-x-2'>
                 <BiUserCircle className='text-red-300 text-2xl' />
-                <h2 className='my-1'>{partner.skill}</h2>
+                <h2 className='my-1'>{partner.contact.name}</h2>
             </div>
             <div className='flex justify-between partners-center gap-x-2 mt-4 p-4'>
                 <Link to={`/community-partners/details/${partner._id}`}>

@@ -6,6 +6,7 @@ import ShowPartner from './pages/ShowPartner'
 import EditPartner from './pages/EditPartner'
 import DeletePartner from './pages/DeletePartner'
 
+//routes to the various pages 
 export const App = () => {
   return (
     <Routes>
