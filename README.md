@@ -120,16 +120,18 @@ You need these programs to run and install the software:
    ```sh
    cd /frontend
    npm init -yes
+   npm install
    cd ..
    cd /backend
    npm init -yes
+   npm install
    ```
 3. Finally, to run, simply open two command windows and in one:
    ```sh
    cd frontend
    npm run dev
    ```
-And in the other: 
+   And in the other: 
    ```sh
    cd backend
    npm run dev
