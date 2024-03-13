@@ -87,6 +87,7 @@ A simple partner database using the MERN stack of softwares to provide basic dat
 * [![Node][Node.js]][Node-url]
 * [![Tailwind][Tailwind]][Tailwind-url]
 * [![Vite][Vite]][Vite-url]
+* [![Docker][Docker]][Docker-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,11 +102,11 @@ To get a local copy up and running follow these simple steps:
 ### Prerequisites
 
 Since we implemented docker, to make the download and run process more streamlined, all you need are:
-* docker:
+1. docker:
   download their interactive desktop from [their website](https://www.docker.com/products/docker-desktop/)!
-* and git!
-  for [Windows](https://git-scm.com/download/win)
-  for linux:
+2. and git!
+  * for [Windows](https://git-scm.com/download/win)
+  * for linux:
   ```sh
    sudo apt-get install git
   ```
@@ -219,3 +220,6 @@ Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/vio
 [Tailwind-url]: https://tailwindui.com/
 [Vite]: https://img.shields.io/badge/Vite-61DAFB?logo=vite&labelColor=20232A&style=for-the-badge&color=20232A
 [Vite-url]: https://vitejs.dev
+[Docker]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
+
