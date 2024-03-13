@@ -3,6 +3,9 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import partnersRoute from "./routes/partnersRoute.js";
 import cors from 'cors';
+import cookieSession from "cookie-session";
+import passport from "passport";
+
 
 const app = express();
 
@@ -12,11 +15,21 @@ app.use(express.json())
 //handling CORS allowing custom origins, so only this frontend application can do these specific actions to effect the database
 
 app.use(
-    cors(/*{
+    cors({
         origin: 'http://localhost:5170',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    }*/)
+        credentials: true,
+    })
 );
+app.use(cookieSession(
+    {name:"session",
+    keys:["lama"],
+    maxAge: 24 * 60 * 60 * 1000
+    }
+));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //gives confirmation of connection upon visiting 
 app.get('/', (request, response) => {

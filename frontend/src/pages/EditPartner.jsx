@@ -20,7 +20,7 @@ const EditPartner = () => {
   useEffect(() => {
     //send request to backend for info
     setLoading(true);
-    axios.get(`http://localhost:5555/community-partners/${id}`)
+    axios.get(`http://localhost:5550/community-partners/${id}`)
       .then((response) => {
         setName(response.data.partner.name);
         setSkill(response.data.partner.skill);
@@ -46,7 +46,7 @@ const EditPartner = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/community-partners/${id}`, data)
+      .put(`http://localhost:5550/community-partners/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner edited successfully', { variant: 'success' });
