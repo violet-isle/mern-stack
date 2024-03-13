@@ -188,6 +188,7 @@ Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/vio
 
 * [Mohammad Taheri's video series on the MERN stacks](https://youtube.com/playlist?list=PLUX0Gmrifrwd7LmPYApia9NNwxV9-4Kgn&si=sn9lzNNTQgrtQTf1)
 * [NHN TV's video series on implementing live search functionality into REACT](https://www.youtube.com/watch?v=OwqkFjXG_sI)
+* [Avik Kundu's article on Dockerizing a MERN stack application](https://medium.com/mozilla-club-bbsr/dockerizing-a-mern-stack-web-application-ebf78babf136)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
