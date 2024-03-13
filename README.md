@@ -1,4 +1,3 @@
-
 <a name="readme-top"></a>
 
 
@@ -101,13 +100,15 @@ To get a local copy up and running follow these simple steps:
 
 ### Prerequisites
 
-You need these programs to run and install the software:
-* npm, update using:
+Since we implemented docker, to make the download and run process more streamlined, all you need are:
+* docker:
+  download their interactive desktop from [their website](https://www.docker.com/products/docker-desktop/)!
+* and git!
+  for [Windows](https://git-scm.com/download/win)
+  for linux:
   ```sh
-  npm install npm@latest -g
+   sudo apt-get install git
   ```
-  or download from [their website](https://nodejs.org/en/download/current)
-* MongoDB: To run a server locally, download [MongoDB Community Edition](https://www.mongodb.com/try/download/community), otherwise, if you are using a cloud hosting service such as Atlas, simply replace the URL in the config.js
   
 ### Installation
 
@@ -116,27 +117,11 @@ You need these programs to run and install the software:
    ```sh
    git clone https://github.com/violet-isle/mern-stack.git
    ```
-2. Initialize Node.js packages
+2. Then just navigate to mern-stack and run:
    ```sh
-   cd /frontend
-   npm init -yes
-   npm install
-   cd ..
-   cd /backend
-   npm init -yes
-   npm install
+   sudo docker compose up
    ```
-3. Finally, to run, simply open two command windows and in one:
-   ```sh
-   cd frontend
-   npm run dev
-   ```
-   And in the other: 
-   ```sh
-   cd backend
-   npm run dev
-   ```
-And then it should be running! Don't forget to add an initial community partner into the database before you expect to see data in the table.
+And then it should be running! To connect, type in localhost:5170 in your browser. Don't forget to add an initial community partner into the database before you expect to see data in the table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,7 +140,6 @@ This project can be used in many ways, and although it was designed for storing 
 ## Roadmap
 
 - [ ] Add authentication
-- [ ] Dockerize
 
 See the [open issues](https://github.com/violet-isle/mern-stack/issues) for a full list of proposed features (and known issues).
 

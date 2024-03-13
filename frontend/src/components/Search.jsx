@@ -29,13 +29,13 @@ const Search = ({ showType, loading }) => {
       try {
         if (!key.trim()) {
           //we use axios to get the data from the backend, if the search function is empty
-          const res = await axios.get('http://localhost:5555/community-partners');
+          const res = await axios.get('http://localhost:5550/community-partners');
           setSearchResult(res.data.data);
           return;
         };
 
         //we use axios to get the data from the backend, using the parameters provided by the search function
-        const res = await axios.get('http://localhost:5555/community-partners', { params: { key: key } });
+        const res = await axios.get('http://localhost:5550/community-partners', { params: { key: key } });
         setSearchResult(res.data.data);
       } catch (error) {
         console.log(error)

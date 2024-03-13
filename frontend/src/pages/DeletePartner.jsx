@@ -15,7 +15,7 @@ const DeletePartner = () => {
     setLoading(true);
     //send delete request to backend
     axios
-      .delete(`http://localhost:5555/community-partners/${id}`)
+      .delete(`http://localhost:5550/community-partners/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner deleted successfully!', { variant: 'success' });

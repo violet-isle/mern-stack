@@ -13,7 +13,7 @@ const ShowPartner = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/community-partners/${id}`)
+      .get(`http://localhost:5550/community-partners/${id}`)
       .then((response) => {
         setPartner(response.data.partner);
         setLoading(false);

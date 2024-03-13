@@ -29,7 +29,7 @@ const Home = () => {
     setLoading(true);
 
     axios
-      .get('http://localhost:5555/community-partners')
+      .get('http://localhost:5550/community-partners')
       .then((response) => {
         setPartners(response.data.data);
         setLoading(false);

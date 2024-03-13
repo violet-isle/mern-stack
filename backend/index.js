@@ -12,10 +12,10 @@ app.use(express.json())
 //handling CORS allowing custom origins, so only this frontend application can do these specific actions to effect the database
 
 app.use(
-    cors({
-        origin: 'http://localhost:5173',
+    cors(/*{
+        origin: 'http://localhost:5170',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    })
+    }*/)
 );
 
 //gives confirmation of connection upon visiting 

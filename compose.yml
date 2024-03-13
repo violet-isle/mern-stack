@@ -1,0 +1,40 @@
+services:
+  mongodb:
+    image: mongo:7.0.4
+    restart: unless-stopped
+    ports:
+      - 7017:27107
+    volumes:
+      - db:/data/db
+    networks:
+      - backend
+  
+  node-app:
+    depends_on:
+      - mongodb
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 5550:5555
+    networks:
+      - backend
+      - frontend
+
+  react-app:
+    depends_on:
+      - node-app
+    build:
+      context: ./frontend
+    ports:
+      - 5170:5173
+    networks:
+      - frontend  
+
+volumes: 
+  db:
+
+networks:
+  backend:
+  frontend:
