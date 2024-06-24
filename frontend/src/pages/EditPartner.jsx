@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import { useSnackbar } from 'notistack';
+import Input from 'react-phone-number-input/input'
 
 
 // allows user to edit partners
@@ -20,7 +21,7 @@ const EditPartner = () => {
   useEffect(() => {
     //send request to backend for info
     setLoading(true);
-    axios.get(`http://localhost:5555/community-partners/${id}`)
+    axios.get(`http://localhost:5550/community-partners/${id}`)
       .then((response) => {
         setName(response.data.partner.name);
         setSkill(response.data.partner.skill);
@@ -46,7 +47,7 @@ const EditPartner = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/community-partners/${id}`, data)
+      .put(`http://localhost:5550/community-partners/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner edited successfully', { variant: 'success' });
@@ -54,7 +55,7 @@ const EditPartner = () => {
       })
       .catch((error) => {
         console.log(error);
-        enqueueSnackbar('Error', { variant: 'error' });
+        enqueueSnackbar(error.response.data.message, { variant: 'error' });
         setLoading(false);
       });
 
@@ -126,10 +127,10 @@ const EditPartner = () => {
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
           <label className='text-xl mr-4 text-gray-500'>Contact Phone Number</label>
-          <input
-            type="text"
+          <Input
+            country="US"
             value={contact.phone}
-            onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: e.target.value })}
+            onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: e})}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>

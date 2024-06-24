@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-// Adding a mongoose schema for contacts, so that if we want to store them as a seperate collection in MongoDB
+// Adding a mongoose schema for contacts, we want to eventually store them as a seperate collection in MongoDB
 const contactSchema = mongoose.Schema(
     {
         name: {

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
+import { formatPhoneNumber } from 'react-phone-number-input'
 
 const ShowPartner = () => {
   const [partner, setPartner] = useState({contact:{}});
@@ -58,7 +59,7 @@ const ShowPartner = () => {
           </div>
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Contact Phone Number</span>
-            <span>{partner.contact.phone}</span>
+            <span>{formatPhoneNumber(partner.contact.phone)}</span>
           </div>
           
           <div className='my-4'>

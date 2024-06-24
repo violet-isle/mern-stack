@@ -1,7 +1,9 @@
 import express from "express";
 import { Partner } from "../models/partnerModel.js";
-
+import { isValidPhoneNumber } from 'react-phone-number-input'
 const router = express.Router()
+var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  
 
 // Route that the frontend uses to draw data that responds to the search query or all database data
 router.get('/', async (request, response) => {
@@ -43,6 +45,17 @@ router.put('/:id', async (request, response) => {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
             return response.status(400).send({ message: "Send all required fields!" });
         }
+        if (!emailRegex.test(request.body.contact.email)) {
+            return response.status(400).send({
+                message: "Email is in the wrong format!"
+            });
+        }
+        if (!isValidPhoneNumber(request.body.contact.phone)) {
+            return response.status(400).send({
+                message: "Phone Number is in the wrong format!"
+            });
+        }
+        
         const { id } = request.params;
         const result = await Partner.findByIdAndUpdate(id, request.body);
 
@@ -66,6 +79,16 @@ router.post('/', async (request, response) => {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
             return response.status(400).send({
                 message: "Send all required fields!"
+            });
+        }
+        if (!emailRegex.test(request.body.contact.email)) {
+            return response.status(400).send({
+                message: "Email is in the wrong format!"
+            });
+        }
+        if (!isValidPhoneNumber(request.body.contact.phone)) {
+            return response.status(400).send({
+                message: "Phone Number is in the wrong format!"
             });
         }
         const newPartner = {
