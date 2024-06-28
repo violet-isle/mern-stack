@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
+
 import PartnersCard from '../components/home/PartnersCard';
 import PartnersTable from '../components/home/PartnersTable';
 import Search from '../components/Search'

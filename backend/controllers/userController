@@ -1,0 +1,47 @@
+import { User } from "../models/userModel.js";
+import jwt from "jsonwebtoken";
+
+import { SECRET } from "../config.js";
+
+const createToken = (_id) => {
+    return jwt.sign({_id}, SECRET, {expiresIn: '3d'})
+}
+
+// login user 
+const loginUser = async (request, response) => {
+    const {email, password} = request.body
+
+    try {
+        const user = await User.login(email, password)
+
+        //create a token
+        const token = createToken(user._id)
+
+
+        response.status(200).json({email, token});        
+    } catch (error) {
+        console.log(error.message);
+        response.status(400).send({ message: error.message });
+    }
+}
+
+
+// sign up user 
+const signupUser = async (request, response) => {
+    const {email, password} = request.body
+
+    try {
+        const user = await User.signup(email, password)
+
+        //create a token
+        const token = createToken(user._id)
+
+
+        response.status(200).json({email, token});
+    } catch (error) {
+        console.log(error.message);
+        response.status(400).send({ message: error.message });
+    }
+}
+
+export {loginUser, signupUser};

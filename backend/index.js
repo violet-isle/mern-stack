@@ -1,8 +1,10 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import partnersRoute from "./routes/partnersRoute.js";
+import partnerRoutes from "./routes/partnerRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import cors from 'cors';
+
 
 const app = express();
 
@@ -24,8 +26,9 @@ app.get('/', (request, response) => {
     return response.status(234).send('Connected!.');
 });
 
-//uses the routing file provided
-app.use('/community-partners', partnersRoute)
+//uses the routing files provided
+app.use('/community-partners', partnerRoutes)
+app.use('/user', userRoutes)
 
 //connects to the mongo database and listens 
 mongoose
