@@ -70,7 +70,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Screenshot 2024-01-08 122805-1](https://github.com/violet-isle/mern-stack/assets/114704338/db2d02c6-3522-49dd-ad39-70e89af13138)
+![Product Example](/frontend/src/assets/ProductExample.png)
 
 
 A simple partner database using the MERN stack of softwares to provide basic database searching, editing, creating, and deleting! This project uses a mix of softwares that make editing and styling the user interface and the backend easy and intuitive! 
@@ -140,7 +140,9 @@ This project can be used in many ways, and although it was designed for storing 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add authentication
+- [ ] Add Google OAuth 
+- [ ] Add further user restrictions and functionalities 
+- [ ] Ability to edit contacts specifically, and add multiple contacts to a specific community partner
 
 See the [open issues](https://github.com/violet-isle/mern-stack/issues) for a full list of proposed features (and known issues).
 
@@ -189,6 +191,7 @@ Project Link: [https://github.com/violet-isle/mern-stack](https://github.com/vio
 * [Mohammad Taheri's video series on the MERN stacks](https://youtube.com/playlist?list=PLUX0Gmrifrwd7LmPYApia9NNwxV9-4Kgn&si=sn9lzNNTQgrtQTf1)
 * [NHN TV's video series on implementing live search functionality into REACT](https://www.youtube.com/watch?v=OwqkFjXG_sI)
 * [Avik Kundu's article on Dockerizing a MERN stack application](https://medium.com/mozilla-club-bbsr/dockerizing-a-mern-stack-web-application-ebf78babf136)
+* [Net Ninja's video series on adding authentication to a MERN stack application](https://www.youtube.com/playlist?list=PL4cUxeGkcC9g8OhpOZxNdhXggFz2lOuCT)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
