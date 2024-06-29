@@ -6,9 +6,11 @@ import Spinner from '../components/Spinner';
 import { useSnackbar } from 'notistack';
 import Input from 'react-phone-number-input/input'
 
+import { useAuthContext } from '../hooks/useAuthContext';
 
 // allows user to edit partners
 const EditPartner = () => {
+
   const [name, setName] = useState('');
   const [skill, setSkill] = useState('');
   const [partnerYear, setPartnerYear] = useState('');
@@ -18,10 +20,21 @@ const EditPartner = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+
+  const { user } = useAuthContext()
   useEffect(() => {
+    if (!user) {
+      console.log('You must be logged in');
+      enqueueSnackbar('You must be logged in', { variant: 'error' });
+      return
+    }
     //send request to backend for info
     setLoading(true);
-    axios.get(`http://localhost:5550/community-partners/${id}`)
+    axios.get(`http://localhost:5550/community-partners/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${user.token}`,
+      }
+    })
       .then((response) => {
         setName(response.data.partner.name);
         setSkill(response.data.partner.skill);
@@ -47,7 +60,9 @@ const EditPartner = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5550/community-partners/${id}`, data)
+      .put(`http://localhost:5550/community-partners/${id}`, data, {headers: {
+        'Authorization': `Bearer ${user.token}`},
+      },)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner edited successfully', { variant: 'success' });
@@ -130,7 +145,7 @@ const EditPartner = () => {
           <Input
             country="US"
             value={contact.phone}
-            onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: e})}
+            onChange={(e) => setContact({ name: contact.name, email: contact.email, phone: e })}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>

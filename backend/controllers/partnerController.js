@@ -1,12 +1,10 @@
-import express from "express";
 import { Partner } from "../models/partnerModel.js";
 import { isValidPhoneNumber } from 'react-phone-number-input'
-const router = express.Router()
 var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   
 
 // Route that the frontend uses to draw data that responds to the search query or all database data
-router.get('/', async (request, response) => {
+const getPartners = async (request, response) => {
     try {
         const { key, page, limit } = request.query
 
@@ -22,11 +20,11 @@ router.get('/', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
+};
 
 
 // Route that the frontend uses to draw data about a specific community partner
-router.get('/:id', async (request, response) => {
+const getPartner =  async (request, response) => {
     try {
         const { id } = request.params;
         const partner = await Partner.findById(id);
@@ -36,11 +34,11 @@ router.get('/:id', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
+};
 
 
 // Route that the frontend draws data from and then edits and pushes data back to, when updating community partner info
-router.put('/:id', async (request, response) => {
+const editPartner = async (request, response) => {
     try {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
             return response.status(400).send({ message: "Send all required fields!" });
@@ -70,11 +68,11 @@ router.put('/:id', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
+};
 
 
 //Route the frontend uses to upload new partner data to the database
-router.post('/', async (request, response) => {
+const createPartner = async (request, response) => {
     try {
         if (!request.body.name || !request.body.skill || !request.body.partnerYear) {
             return response.status(400).send({
@@ -105,11 +103,11 @@ router.post('/', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
+};
 
 
 //Route for frontend to send data to, to delete a partner from a database
-router.delete('/:id', async (request, response) => {
+const deletePartner = async (request, response) => {
     try {
         const { id } = request.params;
         const result = await Partner.findByIdAndDelete(id);
@@ -122,6 +120,6 @@ router.delete('/:id', async (request, response) => {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
-});
+};
 
-export default router;
+export {getPartners, getPartner, editPartner, createPartner, deletePartner};
