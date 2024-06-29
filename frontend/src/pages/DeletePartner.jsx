@@ -5,17 +5,32 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import { useSnackbar } from 'notistack';
 
+import { useAuthContext } from '../hooks/useAuthContext';
+
 //page for deleting a partner from the database
 const DeletePartner = () => {
+  
+  const {user} = useAuthContext()
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+
+  
   const handleDeletePartner = () => {
+    if (!user) {
+      console.log('You must be logged in');
+      enqueueSnackbar('You must be logged in', { variant: 'error' });
+      return
+    }
     setLoading(true);
     //send delete request to backend
     axios
-      .delete(`http://localhost:5550/community-partners/${id}`)
+      .delete(`http://localhost:5550/community-partners/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${user.token}`,
+        }
+      })
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner deleted successfully!', { variant: 'success' });

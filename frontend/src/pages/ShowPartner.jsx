@@ -4,17 +4,33 @@ import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
+import { useSnackbar } from 'notistack';
+
+import { useAuthContext } from '../hooks/useAuthContext';
+
 import { formatPhoneNumber } from 'react-phone-number-input'
 
 const ShowPartner = () => {
   const [partner, setPartner] = useState({contact:{}});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  
+  const { enqueueSnackbar } = useSnackbar();
+  const {user} = useAuthContext()
 
   useEffect(() => {
     setLoading(true);
+    if (!user) {
+      console.log('You must be logged in');
+      enqueueSnackbar('You must be logged in', { variant: 'error' });
+      return
+    }
     axios
-      .get(`http://localhost:5550/community-partners/${id}`)
+      .get(`http://localhost:5550/community-partners/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${user.token}`,
+        }
+      })
       .then((response) => {
         setPartner(response.data.partner);
         setLoading(false);

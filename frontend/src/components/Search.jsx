@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import PartnersCard from '../components/home/PartnersCard';
 import PartnersTable from '../components/home/PartnersTable';
 import Spinner from '../components/Spinner';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Search = ({ showType, loading }) => {
   const [searchResult, setSearchResult] = useState([]);
   const [key, setKey] = useState("");
   const [sortedField, setSortedField] = React.useState(null);
+  const { user } = useAuthContext()
   let sortedPartners = [...searchResult];
 
   //here we reorder the data provided to us by what the get function returns
@@ -25,24 +27,30 @@ const Search = ({ showType, loading }) => {
     });
   }
   useEffect(() => {
-    const search = async () => {
-      try {
-        if (!key.trim()) {
-          //we use axios to get the data from the backend, if the search function is empty
-          const res = await axios.get('http://localhost:5550/community-partners');
-          setSearchResult(res.data.data);
-          return;
-        };
+    if (user) {
+      const search = async () => {
+        try {
+          if (!key.trim()) {
+            //we use axios to get the data from the backend, if the search function is empty
+            const res = await axios.get('http://localhost:5550/community-partners', {
+              headers: {
+                'Authorization': `Bearer ${user.token}`,
+              }
+            });
+            setSearchResult(res.data.data);
+            return;
+          };
 
-        //we use axios to get the data from the backend, using the parameters provided by the search function
-        const res = await axios.get('http://localhost:5550/community-partners', { params: { key: key } });
-        setSearchResult(res.data.data);
-      } catch (error) {
-        console.log(error)
+          //we use axios to get the data from the backend, using the parameters provided by the search function
+          const res = await axios.get('http://localhost:5550/community-partners', { params: { key: key }, headers: { 'Authorization': `Bearer ${user.token}` } });
+          setSearchResult(res.data.data);
+        } catch (error) {
+          console.log(error)
+        }
       }
+      search();
     }
-    search();
-  }, [key]);
+  }, [key, user]);
   return (
     <form>
       <div>
@@ -58,10 +66,14 @@ const Search = ({ showType, loading }) => {
               onChange={(e) => setKey(e.target.value)}
             />
           </div>
-          
-        {/*This is the element that the user clicks on to change how the table is sorted*/}
+
+
+          {/*This is the element that the user clicks on to change how the table is sorted*/}
           <div>
+            <label className="block text-sm font-medium leading-6 text-gray-900">Sort by: </label>
+
             <table className='inline-block'>
+
               <thead>
                 <tr>
                   <th>
@@ -84,10 +96,10 @@ const Search = ({ showType, loading }) => {
             </table>
           </div>
         </div>
-        
+
         {/*This is the element that checks whether the user is in table or card view, and displays either accordingly*/}
         <div>
-          {loading ? <Spinner /> : showType == 'table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
+          {loading ? <Spinner /> : showType == 'Table' ? (<PartnersTable partners={sortedPartners} />) : (<PartnersCard partners={sortedPartners} />)}
         </div>
 
       </div>

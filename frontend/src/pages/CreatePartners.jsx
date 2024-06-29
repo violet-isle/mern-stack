@@ -5,8 +5,10 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import { useSnackbar } from 'notistack';
 import Input from 'react-phone-number-input/input'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const CreatePartners = () => {
+  const {user} = useAuthContext()
   const [name, setName] = useState('');
   
   const [skill, setSkill] = useState('');
@@ -19,6 +21,11 @@ const CreatePartners = () => {
   const { enqueueSnackbar } = useSnackbar();
   
   const handleSavePartner = () => {
+    if (!user) {
+      console.log('You must be logged in');
+      enqueueSnackbar('You must be logged in', { variant: 'error' });
+      return
+    }
     const data = {
       name,
       skill,
@@ -28,7 +35,9 @@ const CreatePartners = () => {
     setLoading(true);
     //send data to database
     axios
-      .post('http://localhost:5550/community-partners', data)
+      .post('http://localhost:5550/community-partners', data, {headers: {
+        'Authorization': `Bearer ${user.token}`,
+      }})
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Partner created successfully!', { variant: 'success' });

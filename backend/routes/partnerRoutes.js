@@ -1,7 +1,11 @@
 import express from "express";
-import { getPartners, getPartner, editPartner, createPartner, deletePartner } from '../controllers/partnerController'
+import { getPartners, getPartner, editPartner, createPartner, deletePartner } from '../controllers/partnerController.js'
+import requireAuth from "../middleware/requireAuth.js";
 
 const router = express.Router()
+
+// Require authentication for all partner routes
+router.use(requireAuth)
   
 
 // Route that the frontend uses to draw data that responds to the search query or all database data
